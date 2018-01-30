@@ -16,15 +16,19 @@ namespace cs_CommandPrompt
 
         public bool IsWaitForExit { get; set; }
 
-        public cs_CommandPrompt(string arg)
+        public cs_CommandPrompt()
         {
             process = new Process();
 
             process.StartInfo.FileName = "cmd";
-            process.StartInfo.Arguments = "/C " + arg;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
+        }
+
+        public cs_CommandPrompt(string cmd): this()
+        {
+            SetCommand(cmd);
         }
 
         public void Execute()
@@ -36,6 +40,17 @@ namespace cs_CommandPrompt
                 ExitCode = process.ExitCode;
             }
             StdOut = process.StandardOutput.ReadToEnd();
+        }
+
+        public void Execute(string cmd)
+        {
+            SetCommand(cmd);
+            Execute();
+        }
+
+        public void SetCommand(string cmd)
+        {
+            process.StartInfo.Arguments = "/C " + cmd;
         }
     }
 }
