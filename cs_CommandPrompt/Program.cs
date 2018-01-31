@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CommandPromptUtil;
+
 namespace cs_CommandPrompt
 {
     class Program
@@ -13,7 +15,7 @@ namespace cs_CommandPrompt
             
             //Example1
 
-            var cmd = new cs_CommandPrompt("dir");
+            var cmd = new CommandPrompt("dir");
             cmd.Execute();
             
 
