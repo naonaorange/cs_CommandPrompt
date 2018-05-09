@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cs_CommandPrompt
+namespace CommandPromptUtil
 {
-    class cs_CommandPrompt
+    class CommandPrompt
     {
         private System.Diagnostics.Process process;
 
@@ -16,7 +16,7 @@ namespace cs_CommandPrompt
 
         public bool IsWaitForExit { get; set; }
 
-        public cs_CommandPrompt(string arg)
+        public CommandPrompt(string arg)
         {
             process = new Process();
 
@@ -36,6 +36,11 @@ namespace cs_CommandPrompt
                 ExitCode = process.ExitCode;
             }
             StdOut = process.StandardOutput.ReadToEnd();
+        }
+
+        public void SetCommand(string command)
+        {
+            process.StartInfo.Arguments = "/C " + command;
         }
     }
 }
